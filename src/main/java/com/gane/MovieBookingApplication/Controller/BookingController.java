@@ -1,0 +1,52 @@
+package com.gane.MovieBookingApplication.Controller;
+
+import com.gane.MovieBookingApplication.DTO.BookingDTO;
+import com.gane.MovieBookingApplication.entity.Booking;
+import com.gane.MovieBookingApplication.entity.BookingStatus;
+import com.gane.MovieBookingApplication.service.BookingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/bookings")
+public class BookingController {
+
+    @Autowired
+    public BookingService bookingService;
+
+    @PostMapping("/createbooking")
+    public ResponseEntity<Booking> createBooking(@RequestBody BookingDTO bookingDTO){
+        return ResponseEntity.ok(bookingService.createBooking(bookingDTO));
+    }
+
+    @GetMapping("/getuserbookings/{id}")
+    public ResponseEntity<List<Booking>> getUserBookings(@PathVariable Long user_id){
+        return ResponseEntity.ok(bookingService.getUserBookings(user_id));
+    }
+
+    @GetMapping("/getshowbookings/{id}")
+    public ResponseEntity<List<Booking>> getShowBookings(@PathVariable Long show_id){
+        return ResponseEntity.ok(bookingService.getShowBookings(show_id));
+    }
+
+    @PutMapping("{id}/confirmBooking")
+    public ResponseEntity<Booking> confirmBooking(@PathVariable Long id){
+        return ResponseEntity.ok(bookingService.confirmBooking(id));
+    }
+
+    @PutMapping("{id}/cancelBooling")
+    public ResponseEntity<Booking> cancelBooking(@PathVariable Long id){
+        return ResponseEntity.ok(bookingService.cancelBooking(id));
+    }
+
+    @GetMapping("/getbookingbystatus/{bookingstatus}")
+    public ResponseEntity<List<Booking>> getBookingsByStatus(@PathVariable BookingStatus bookingStatus){
+        return ResponseEntity.ok(bookingService.getBookingsByStatus(bookingStatus));
+    }
+
+
+}
