@@ -1,5 +1,6 @@
 package com.gane.MovieBookingApplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,20 +13,24 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
-    private String userName;
+    private String username;
     private String password;
     private String email;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Booking> bookings;
 
     @Override
@@ -36,7 +41,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return "";
+        return username;
     }
 
 

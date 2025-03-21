@@ -40,11 +40,11 @@ public class AuthenticationService {
         roles.add("ROLE_USER");
 
         User user = new User();
-        user.setUserName(registerRequestDTO.getUsername());
+        user.setUsername(registerRequestDTO.getUsername());
         user.setEmail(registerRequestDTO.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
         user.setRoles(roles);
-
+        System.out.println(user);
         return userRepository.save(user);
     }
 
@@ -59,7 +59,7 @@ public class AuthenticationService {
         roles.add("ROLE_USER");
 
         User user = new User();
-        user.setUserName(registerRequestDTO.getUsername());
+        user.setUsername(registerRequestDTO.getUsername());
         user.setEmail(registerRequestDTO.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
         user.setRoles(roles);

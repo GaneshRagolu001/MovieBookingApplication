@@ -1,5 +1,6 @@
 package com.gane.MovieBookingApplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "`show`")
 public class Show {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,5 +26,6 @@ public class Show {
     private Theater theater;
 
     @OneToMany(mappedBy = "show", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Booking> bookings;
 }

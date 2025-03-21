@@ -23,7 +23,7 @@ public class MovieService {
         movie.setDescription(movieDTO.getDescription());
         movie.setLanguage(movieDTO.getLanguage());
         movie.setDuration(movieDTO.getDuration());
-        movie.setReleaseDate(movie.getReleaseDate());
+        movie.setReleaseDate(movieDTO.getReleaseDate());
 
        return movieRepository.save(movie);
     }

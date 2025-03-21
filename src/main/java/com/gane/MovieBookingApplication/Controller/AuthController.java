@@ -22,11 +22,13 @@ public class AuthController {
 
     @PostMapping("/registernormaluser")
     public ResponseEntity<User> registerNormalUser(@RequestBody RegisterRequestDTO registerRequestDTO){
+        System.out.println("Controller hitted");
         return ResponseEntity.ok(authenticationService.registerNormalUser(registerRequestDTO));
     }
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody LoginRequestDTO loginRequestDTO){
+        System.out.println(loginRequestDTO);
         return ResponseEntity.ok(authenticationService.login(loginRequestDTO));
     }
 }

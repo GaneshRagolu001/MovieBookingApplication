@@ -24,27 +24,27 @@ public class BookingController {
     }
 
     @GetMapping("/getuserbookings/{id}")
-    public ResponseEntity<List<Booking>> getUserBookings(@PathVariable Long user_id){
+    public ResponseEntity<List<Booking>> getUserBookings(@PathVariable("id") Long user_id){
         return ResponseEntity.ok(bookingService.getUserBookings(user_id));
     }
 
     @GetMapping("/getshowbookings/{id}")
-    public ResponseEntity<List<Booking>> getShowBookings(@PathVariable Long show_id){
+    public ResponseEntity<List<Booking>> getShowBookings(@PathVariable("id") Long show_id){
         return ResponseEntity.ok(bookingService.getShowBookings(show_id));
     }
 
     @PutMapping("{id}/confirmBooking")
-    public ResponseEntity<Booking> confirmBooking(@PathVariable Long id){
+    public ResponseEntity<Booking> confirmBooking(@PathVariable("id") Long id){
         return ResponseEntity.ok(bookingService.confirmBooking(id));
     }
 
     @PutMapping("{id}/cancelBooling")
-    public ResponseEntity<Booking> cancelBooking(@PathVariable Long id){
+    public ResponseEntity<Booking> cancelBooking(@PathVariable("id") Long id){
         return ResponseEntity.ok(bookingService.cancelBooking(id));
     }
 
     @GetMapping("/getbookingbystatus/{bookingstatus}")
-    public ResponseEntity<List<Booking>> getBookingsByStatus(@PathVariable BookingStatus bookingStatus){
+    public ResponseEntity<List<Booking>> getBookingsByStatus(@PathVariable("bookingstatus") BookingStatus bookingStatus){
         return ResponseEntity.ok(bookingService.getBookingsByStatus(bookingStatus));
     }
 

@@ -92,11 +92,11 @@ public class BookingService {
     }
 
     public List<Booking> getUserBookings(Long user_id){
-       return bookingRepository.findByUserId(user_id);
+       return bookingRepository.findByUser_UserId(user_id);
     }
 
     public List<Booking> getShowBookings(Long show_id){
-        return bookingRepository.findByShowId(show_id);
+        return bookingRepository.findByShow_ShowId(show_id);
     }
 
     public Booking confirmBooking(Long id){

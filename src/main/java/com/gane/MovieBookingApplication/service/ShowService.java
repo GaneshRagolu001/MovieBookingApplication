@@ -47,7 +47,7 @@ public class ShowService {
     }
 
     public List<Show> getShowsByMovie(Long movie_id){
-        Optional<List<Show>> shows = showRepository.findByMovieId(movie_id);
+        Optional<List<Show>> shows = showRepository.findByMovie_MovieId(movie_id);
         if(shows.isPresent()){
             return shows.get();
         }else{
@@ -56,7 +56,7 @@ public class ShowService {
     }
 
     public List<Show> getShowsByTheater(Long theater_id){
-        Optional<List<Show>> shows = showRepository.findByTheaterId(theater_id);
+        Optional<List<Show>> shows = showRepository.findByTheater_TheaterId(theater_id);
         if(shows.isPresent()){
             return shows.get();
         }else{
