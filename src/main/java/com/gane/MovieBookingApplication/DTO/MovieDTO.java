@@ -14,4 +14,6 @@ public class MovieDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate releaseDate;
     private String language;
+    private String normalimgurl;
+    private String headerimgurl;
 }

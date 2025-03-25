@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -22,6 +23,15 @@ public class MovieController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Movie> addMovie(@RequestBody MovieDTO movieDTO){
         return ResponseEntity.ok(movieService.addMovie(movieDTO));
+    }
+
+    @PostMapping("/{movieId}/upload")
+    public ResponseEntity<String> uploadImage(@PathVariable("movieId") Long movieId,
+                                              @RequestParam("url") String url,
+                                              @RequestParam("type") String type){
+        System.out.println(url);
+        System.out.println(type);
+        return ResponseEntity.ok(movieService.uploadImage(movieId,url,type));
     }
 
     @GetMapping("/getallmovies")

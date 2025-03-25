@@ -19,6 +19,8 @@ public class Movie {
     private Integer duration;
     private LocalDate releaseDate;
     private String language;
+    private String normalimgurl;
+    private String headerimgurl;
 
     @OneToMany(mappedBy = "movie",fetch = FetchType.LAZY)
     @JsonIgnore
