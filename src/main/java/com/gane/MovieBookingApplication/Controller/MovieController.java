@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,7 +22,19 @@ public class MovieController {
     @PostMapping("/addmovie")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Movie> addMovie(@RequestBody MovieDTO movieDTO){
+        System.out.println("add movie api hitted");
         return ResponseEntity.ok(movieService.addMovie(movieDTO));
+    }
+
+
+    @PostMapping("/{movieId}/upload")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> uploadImage(@PathVariable("movieId") Long movieId,
+                                              @RequestParam("url") String url,
+                                              @RequestParam("type") String type){
+        System.out.println(url);
+        System.out.println(type);
+        return ResponseEntity.ok(movieService.uploadImage(movieId,url,type));
     }
 
     @GetMapping("/getallmovies")
@@ -30,7 +43,7 @@ public class MovieController {
     }
 
     @GetMapping("/getmoviesbygenre")
-    public ResponseEntity<List<Movie>> getMoviesByGenre(@RequestParam String genre){
+    public ResponseEntity<List<Movie>> getMoviesByGenre(@RequestParam("genre") String genre){
         return ResponseEntity.ok(movieService.getMoviesByGenre(genre));
     }
 
