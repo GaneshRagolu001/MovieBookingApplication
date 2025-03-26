@@ -69,10 +69,11 @@ public class MovieService {
 
     public List<Movie> getMoviesByGenre(String genre){
 
-        Optional<List<Movie>> movies = movieRepository.findByGenre(genre);
-        if(movies.isPresent()){
-            return movies.get();
-        }else{
+
+        Optional<List<Movie>> movies = movieRepository.findByGenreContaining(genre);
+
+        if(movies.get().size() > 0) return movies.get();
+        else{
             throw new RuntimeException("No movies Found by genre : " + genre);
         }
     }

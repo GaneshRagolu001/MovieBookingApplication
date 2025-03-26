@@ -22,10 +22,13 @@ public class MovieController {
     @PostMapping("/addmovie")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Movie> addMovie(@RequestBody MovieDTO movieDTO){
+        System.out.println("add movie api hitted");
         return ResponseEntity.ok(movieService.addMovie(movieDTO));
     }
 
+
     @PostMapping("/{movieId}/upload")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> uploadImage(@PathVariable("movieId") Long movieId,
                                               @RequestParam("url") String url,
                                               @RequestParam("type") String type){
@@ -40,7 +43,7 @@ public class MovieController {
     }
 
     @GetMapping("/getmoviesbygenre")
-    public ResponseEntity<List<Movie>> getMoviesByGenre(@RequestParam String genre){
+    public ResponseEntity<List<Movie>> getMoviesByGenre(@RequestParam("genre") String genre){
         return ResponseEntity.ok(movieService.getMoviesByGenre(genre));
     }
 
